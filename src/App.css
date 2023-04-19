@@ -1,38 +1,151 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  margin: 50px auto;
+}
+h1 {
+  text-align: center;
+  color: #0c2d50;
+}
+.Chat-container {
+  margin: 50px;
+  border: 2px solid rgb(21, 36, 77);
+  border-radius: 10px;
+  height: 50vh;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+.Messages {
+  display: flex;
+  margin-top: 10px;
+}
+
+.MessagesList {
+  padding: 20px 0;
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.Messages.thisMember {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.Message-content {
+  display: inline-block;
+}
+
+.thisMember > .Message-content {
+  align-items: flex-end;
+}
+
+.nameSetupWrapper {
+  margin-top: 20vh;
+  display: flex;
+  justify-content: center;
+}
+.NameSetup {
+  width: 50vw;
+}
+.Messages > .avatar {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 1px dashed #2d6b5e;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  display: flex;
+  margin: 0 10px -10px;
+}
+
+.Message-content > .username {
+  display: block;
+  color: #92a4b4;
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.Message-content > .text {
+  padding: 10px;
+  max-width: 450px;
+  word-wrap: break-word;
+  margin: 0;
+  border-radius: 14px;
+  background-color: #2d6b5e;
   color: white;
+  display: inline-block;
 }
 
-.App-link {
-  color: #61dafb;
+form {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.thisMember > .Message-content .text {
+  background-color: #92a4b4;
+  color: black;
+}
+
+input {
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #0c2d50;
+}
+input:focus {
+  outline-color: cornflowerblue;
+}
+
+.InputForm {
+  padding: 10px;
+}
+
+button {
+  margin-left: 10px;
+  color: white;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #94c4ac;
+  display: block;
+  position: relative;
+  padding: 5px 15px;
+
+  box-shadow: 0 5px 0 #2d6b5e;
+  border-radius: 5px;
+}
+
+button:active {
+  top: 1px;
+  background-color: #2d6b5e;
+  box-shadow: inset 0 3px 0 #1c5610, inset 0 -3px 0 #2d6b5e;
+  text-shadow: 0px 2px 0px #1c5610;
+}
+
+button:after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  padding: 4px;
+  position: absolute;
+  bottom: -10px;
+  left: -4px;
+  z-index: -1;
+  border-radius: 5px;
 }

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 
-function NameSetup(props) {
-  const [username, setUsername] = useState("");
+interface NameSetupProps {
+  setUsername: (username: string) => void;
+}
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+const NameSetup: React.FC<NameSetupProps> = ({ setUsername }) => {
+  const [localUsername, setLocalUsername] = useState("");
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = (e: FormEvent) => {
     e.preventDefault();
-    props.handleSubmitForm(username);
+    setUsername(localUsername);
   };
 
   return (
@@ -20,8 +20,8 @@ function NameSetup(props) {
           <input
             type="text"
             placeholder="Enter chat name - max 20 characters"
-            value={username}
-            onChange={handleUsernameChange}
+            value={localUsername}
+            onChange={e => setLocalUsername(e.target.value)}
             maxLength={20}
           />
           <button type="submit">Join</button>

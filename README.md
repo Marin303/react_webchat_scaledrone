@@ -1,3 +1,9 @@
+```
+
+```
+```
+npm install @dicebear/core @dicebear/collection
+```
 # React Web Chat with Scaledrone Documentation
 
 The React Web Chat with Scaledrone is a chat application built using React and Scaledrone, a real-time messaging service. This documentation provides an overview of the project, installation instructions, and details about the application's features and components.

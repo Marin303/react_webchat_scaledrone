@@ -1,7 +1,13 @@
 import React from "react";
 
-function Messages({ messages, thisMember }) {
-  function renderMessage(message, thisMember) {
+interface MessageProps {
+  messages: any[];
+  thisMember: any;
+}
+
+const Messages: React.FC<MessageProps> = ({ messages, thisMember }) => {
+
+  const renderMessage = (message: any, thisMember: any) => {
     const { member, data } = message;
     const senderMessage = member.id === thisMember.id;
     const chatBubble = senderMessage ? "Messages thisMember" : "Messages";
@@ -21,8 +27,9 @@ function Messages({ messages, thisMember }) {
 
   return (
     <ul className="MessagesList">
-      {messages.map((m) => renderMessage(m, thisMember))}
+      {Array.isArray(messages) && messages.map((m) => renderMessage(m, thisMember))}
     </ul>
+    
   );
 }
 

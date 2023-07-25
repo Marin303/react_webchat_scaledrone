@@ -1,10 +1,10 @@
-function randomAvatar() {
+const randomAvatar = () => {
     const avatarsContext = require.context("../images", false, /\.png$/);
     const avatars = avatarsContext.keys().map(avatarsContext);
   
     let lastAvatarIndex = null;
   
-    function getRandomAvatar() {
+    const getRandomAvatar = () => {
       let index = Math.floor(Math.random() * avatars.length);
       while (index === lastAvatarIndex) {
         index = Math.floor(Math.random() * avatars.length);

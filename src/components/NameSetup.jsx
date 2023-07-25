@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-function NameSetup(props) {
+const NameSetup = (usernameHandler) => {
+  
   const [username, setUsername] = useState("");
 
   const handleUsernameChange = (e) => {
@@ -9,7 +10,7 @@ function NameSetup(props) {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    props.handleSubmitForm(username);
+    usernameHandler.handleSubmitForm(username);
   };
 
   return (

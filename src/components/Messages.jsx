@@ -1,11 +1,14 @@
 import React from "react";
 
-function Messages({ messages, thisMember }) {
-  function renderMessage(message, thisMember) {
+const Messages = ({ messages, thisMember }) => {
+  
+  const renderMessage = (message, thisMember) => {
+
     const { member, data } = message;
     const senderMessage = member.id === thisMember.id;
+
     const chatBubble = senderMessage ? "Messages thisMember" : "Messages";
-    /* console.log(member) */
+
     return (
       <li key={message.id} className={chatBubble}>
         <span className="avatar">

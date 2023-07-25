@@ -4,31 +4,39 @@ import Input from "../components/Input";
 import NameSetup from "../components/NameSetup";
 import randomAvatar from "../components/RandomAvatar";
 
-export default function Main() {
+const Main = () => {
+
   const initialChatState = {
-    member: { username: "", avatar: "" },
+    member: { 
+      username: "",
+      avatar: "" 
+    },
     messages: [],
   };
+
   const [chat, setChat] = useState(initialChatState);
   const [drone, setDrone] = useState(null);
 
+  const nickName = chat.member.username 
+  const chatSize = chat.messages.length
+
   useEffect(() => {
-    if (chat.member.username !== "") {
+
+    if (nickName !== "") {
       const drone = new window.Scaledrone(process.env.REACT_APP_CHANNEL_ID, {
         data: chat.member,
       });
       setDrone(drone);
     }
-  }, [chat.member]);
+  }, [chat.member, nickName]);
 
   useEffect(() => {
-    if (chat.messages.length) {
+    if (chatSize) {
       const scrollElement = document.getElementsByClassName("MessagesList")[0];
       scrollElement.scrollTop =
         scrollElement.scrollHeight - scrollElement.clientHeight;
-      /* console.log("scrollElement: ", scrollElement) */
     }
-  }, [chat.messages.length]);
+  }, [chatSize]);
 
   if (drone) {
     drone.on("open", (error) => {
@@ -44,7 +52,6 @@ export default function Main() {
         const { data, member, id } = message;
         chat.messages.push({ member, data, id });
         setChat({ ...chat }, chat.messages);
-        /* console.log(chat); */
       });
     });
   }
@@ -55,7 +62,7 @@ export default function Main() {
         room: "observable-room",
         message,
       });
-    }
+    } 
   };
 
   const handleSubmitForm = (username) => {
@@ -66,15 +73,17 @@ export default function Main() {
     setChat({ ...chat }, chat.member);
   };
 
-  return chat.member.username === "" ? (
+  return nickName === "" ? (
     <NameSetup handleSubmitForm={handleSubmitForm} />
   ) : (
     <>
       <h1>ReactWebChat</h1>
       <div className="Chat-container">
         <Messages messages={chat.messages} thisMember={chat.member} />
-        <Input onSendMessage={onSendMessage} />
+        <Input onSendMessage={onSendMessage}/> 
       </div>
     </>
   );
 }
+
+export default Main
